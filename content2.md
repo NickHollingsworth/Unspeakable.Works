@@ -6,5 +6,11 @@ This file is *content2.md*.
 
 Specific content is specified in the urls search string
 
-* [content](index.html?page=content)
-* [content2](index.html?page=content2)
+* Links using Markdown
+  * [content](index.html?page=content.md)
+  * [content2](index.html?page=content2.md)
+
+* Links using Placeholders
+  * [link:content]
+  * [link:content2]
+

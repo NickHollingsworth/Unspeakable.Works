@@ -10,24 +10,24 @@
 			<p>Content goes here</p>
 			<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 			<script>
-			//	let md = '# text Marked in browser\n\nRendered by **marked**.';
+				// get the name of the content file from the URL query string
+				var urlObject = new URL(document.location.href);
+				var params = urlObject.searchParams;
+				var page = params.get("page");
 
-			//	fetch("content.md")
-			//		.then((response) => {
-			//				return response.text();
-			//			})
-			//		.then((text) => {
-			//				console.log(text);
-			//			});
+				// define placeholders to replace with markdown
+				let linkRegex = /\[link:(\w+)\]/g;
+				let linkReplace = '[$1](index.html?page=$1.md)';
+				//let linkRegex = '(link:';
+				//let linkReplace = '[link](index.html?page=';
 
-			//	document.getElementById('content').innerHTML =
-			//		marked.parse(md);
-			</script>
-			<script>
-				fetch("content.md", {cache: "no-cache"})      // The path to the raw Markdown file
-					.then(response => response.blob())  // Unwrap to a blob...
-					.then(blob => blob.text())          // ...then to raw text...
-					.then(markdown => {                 // ...then pass the raw text into marked.parse
+				// fetch the requested content and insert it in this page
+				fetch(page, {cache: "no-cache"})           // Read requested markdown file...
+					.then(response => response.blob())     // ...into a Blob...
+					.then(blob => blob.text())             // ...convert it to text...
+					.then(text => text.replaceAll(
+						linkRegex, linkReplace))           // ...replace placeholders with markdown...
+					.then(markdown => {                    // ...convert to html and insert
 						document.getElementById("content").innerHTML = marked.parse(markdown);
 					});
 				</script>
