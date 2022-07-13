@@ -1,5 +1,7 @@
 # Example Content Post
 
+This file is *content.md*.
+
 ## Sources
 
 This page's content is from **content.md** a plain text file written in markdown, while its
