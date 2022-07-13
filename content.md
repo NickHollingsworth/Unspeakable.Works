@@ -22,7 +22,14 @@ The browser always displays index.html; then Javascript in the index page:
 The markdown follows [this spec](https://daringfireball.net/projects/markdown/syntax).
 Here's some examples [on wikipedia](https://en.wikipedia.org/wiki/Markdown#Examples)
 
----
+### Linking Pages
+
+Specific content is specified in the urls search string
+
+* [content](index.html?page=content)
+* [content2](index.html?page=content2)
+
+------
 
 ## Development
 
