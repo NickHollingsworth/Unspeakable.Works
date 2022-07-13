@@ -2,7 +2,7 @@
 
 Personal development blog for Unspeakable - a rules-silent, immersive tabletop rpg for mysteries, investigation, horror and the eerie.
 
-Diffentent RPGs are designed for different play experiences. Unspeakable aims for a very specific one:
+Different RPGs are designed for different play experiences. Unspeakable aims for a very specific one:
 
 Unspeakable is:
 
