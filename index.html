@@ -2,35 +2,161 @@
 <html>
 	<head>
 		<meta charset="utf-8"/>
-		<title>Title Hello World</title>
+		<title>This title gets replaced.</title>
+
+		<link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
+		<link href='https://fonts.googleapis.com/css?family=PT Sans' rel='stylesheet'>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+		<style>
+			html {
+				background-color: #fff;
+				font-family: 'Merriweather';
+			}
+
+			body p {
+				margin: 32px 0px 0px 0px;
+				font-size: 18px;
+				font-weight:400;
+			}
+			li {
+				margin: 8px 0px 0px 0px;
+				font-size: 18px;
+				font-weight:400;
+			}
+			h1 {
+				font-family: 'Tangerine', serif;
+				font-size: 48px;
+				text-shadow: 4px 4px 4px #aaa;
+				font-style: normal; 
+				font-variant: normal; 
+				font-weight: 700; 
+				letter-spacing: -0px;
+				line-height: 46px;
+				color rgb(17, 17, 17);
+			}
+			h4 {
+				font-family: "PT Sans"; 
+				font-size: 40px;
+				font-style: normal; 
+				font-variant: normal; 
+				font-weight: 700; 
+				letter-spacing: -0px;
+				line-height: 46px;
+
+				color rgb(17, 17, 17);
+			}
+			h2 {
+				font-family: "PT Sans";
+				font-size: 32px;
+				font-weight: 700;
+				line-height: 35.2px;
+			}
+			h3 {
+				font-family: "PT Sans";
+				font-size: 22px;
+				font-weight: 700;
+				line-height: 35.2px;
+			}
+		</style>
+
+	<!--	<style type='text/css'>
+			h1 {
+				color: red;
+			}
+			h2 {
+				color: blue;
+			}
+		</style> -->
+
 	</head>
 	<body>
-		<p>Header hello world</p>
+		<p id='header'>Standard site header goes here.</p>
+		<p id='contentDates'>Last Modified: <span id='lastModified'>unknown</span></p>
+		<hr/>
+
 		<div id='content'>
-			<p>Content goes here</p>
-			<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-			<script>
-				// get the name of the content file from the URL query string
-				var urlObject = new URL(document.location.href);
-				var params = urlObject.searchParams;
-				var page = params.get("page");
-
-				// define placeholders to replace with markdown
-				let linkRegex = /\[link:(\w+)\]/g;
-				let linkReplace = '[$1](index.html?page=$1.md)';
-				//let linkRegex = '(link:';
-				//let linkReplace = '[link](index.html?page=';
-
-				// fetch the requested content and insert it in this page
-				fetch(page, {cache: "no-cache"})           // Read requested markdown file...
-					.then(response => response.blob())     // ...into a Blob...
-					.then(blob => blob.text())             // ...convert it to text...
-					.then(text => text.replaceAll(
-						linkRegex, linkReplace))           // ...replace placeholders with markdown...
-					.then(markdown => {                    // ...convert to html and insert
-						document.getElementById("content").innerHTML = marked.parse(markdown);
-					});
-				</script>
+			<p id='noContentYet'>Terribly sorry! I can't load the page you asked for.</p>
+			<p id='pagename'></p>
+			<p id='errorStatus'></p>
+			<p id='errorText'>An unknown error occured.</p>
 		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+		<script>
+
+			// ----------------
+			// Read the requesed markup file, transform to html and insert ionto the page.
+			// ----------------
+			async function fetchContent() {
+
+				// get the name of the requested content file from the URL query string
+				const urlObject = new URL(document.location.href);
+				const params = urlObject.searchParams;
+				const pagename = params.get("page");
+
+				document.getElementById("pagename").innerHTML = pagename;
+
+				// Set the page title to the file name until the page is loaded
+				document.title = pagename;
+
+				// fetch the requested file (which contains markdown raw text) ...
+				try {
+					const response = await fetch(pagename, {cache: "no-cache"}); 
+					if (response.status === 200) {
+			
+						// ...into a Blob...
+						const blob = await response.blob();
+
+						// ...and convert it to text
+						const contentAsRawText = await blob.text();
+
+						// Replace any [link:filename] placeholders in the text with markdown
+						const linkRegex = /\[link:(\w+)\]/g;
+						const linkReplace = '[$1](index.html?page=$1.md)';
+						const contentAsMarkdown = contentAsRawText.replaceAll(linkRegex, linkReplace);
+
+						// convert markdown to html
+						const contentAsHtml = marked.parse(contentAsMarkdown);
+
+						// insert the html content into this page 
+						// replacing all the 'cant load' error stuff
+						document.getElementById("content").innerHTML = contentAsHtml;
+
+						// update page to show when retrieved content last modified
+						const lastMod = response.headers.get('Last-Modified');
+						document.getElementById("lastModified").innerHTML = lastMod;
+
+					} else {
+						document.getElementById("errorStatus").innerHTML = response.status;
+						document.getElementById("errorText").innerHTML = response.statusText;
+						document.title = response.statusText + ": " + pagename;
+					}
+				} catch (error) {
+					console.log(error);
+					document.getElementById("errorText").innerHTML = error;
+				}
+
+			}
+
+			// ----------------
+			// Once the content is inserted into the page
+			// Do anything else needed
+			// ----------------
+			async function buildPage() {
+
+				// Fetch the content, convert to html and insert into the page.
+				await fetchContent();
+
+				// set page title from first H1 of loaded content
+				const mainHeader = document.querySelector('h1');
+				if (mainHeader) {
+					document.title = mainHeader.innerHTML;
+				}
+			}
+
+			buildPage();
+
+		</script>
 	</body>
 </html>

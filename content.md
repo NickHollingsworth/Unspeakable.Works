@@ -1,4 +1,4 @@
-# Example Content Post
+# Example Content Post Also Used As Title
 
 This file is *content.md*.
 
@@ -8,6 +8,8 @@ This page's content is from **content.md** a plain text file written in markdown
 page headers, sidebars, etc are defined in **index.html**.
 
 ------
+
+# Another Heading One Might Confuse title
 
 ## Processing
 
@@ -53,6 +55,14 @@ So run a local server using
 
 And browse http://0.0.0.0:8000
 (lifted from [stackoverflow](https://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local))
+
+### Git
+
+Overly simple use of git:
+
+    git add *
+    git commit -m "Description of change"
+    git push origin main
 
 ### Resources
 
