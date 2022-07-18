@@ -56,14 +56,6 @@ So run a local server using
 And browse http://0.0.0.0:8000
 (lifted from [stackoverflow](https://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local))
 
-### Git
-
-Overly simple use of git:
-
-    git add *
-    git commit -m "Description of change"
-    git push origin main
-
 ### Resources
 
 * Discover which page to display:
@@ -71,4 +63,20 @@ Overly simple use of git:
   * Can I use: https://caniuse.com/?search=window.location.search
 * Examine the resulting html:
   * Marked.js demo page: https://marked.js.org/demo/
+
+------
+
+## Deployment
+
+### Push to Git pages
+
+Overly simple use of git:
+
+    git add *
+    git commit -m "Description of change"
+    git push origin main
+
+### Browse Deployed Pages
+
+Browse  https://nickhollingsworth.github.io/Unspeakable.Works/
 

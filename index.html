@@ -91,9 +91,13 @@
 			async function fetchContent() {
 
 				// get the name of the requested content file from the URL query string
+				// if one isnt given in the urlxxi, then load index.md as the default
 				const urlObject = new URL(document.location.href);
 				const params = urlObject.searchParams;
-				const pagename = params.get("page");
+				let pagename = params.get("page");
+				if (!pagename) {
+					pagename = 'index.md';
+				}
 
 				document.getElementById("pagename").innerHTML = pagename;
 
