@@ -48,13 +48,24 @@ Specific content is specified in the urls search string
 
 ### Run a server
 
-If run locally the file read will fail with a CORs error.
-So run a local server using
+If run locally 
+
+the file read will fail with a CORs error. So run a local server using
 
     python3 -m http.server
 
 And browse http://0.0.0.0:8000
-(lifted from [stackoverflow](https://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local))
+
+Any machine on the local network can access the server and display the local pages. 
+Just get your ip on the local network with
+
+    hostname -I
+
+and then from any device on the network browse to http://yourLocalIp:8000
+
+Notes:
+* (lifted from [stackoverflow](https://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local))
+* for a different port from 8000 run the server as, for example, python3 -m http.server 9001
 
 ### Resources
 

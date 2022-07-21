@@ -1,15 +1,14 @@
 # I'm a Lovely Heading One and Title.
 
-This file is *content2.md*.
 
 ## A Heading 2
 
 Some text here. Very short.
 
 This is a nice long paragraph. Its written as text on
-an arbritary number of lines
-and it doesnt break until there is an blank loine which seperates the paragraphs. 
-*Heres some italic stuff.*
+an arbitrary number of lines
+and it doesn't break until there is an blank line which separates the paragraphs. 
+*Here's some italic stuff.*
 Its still goings. There's loads of it. Here is more. |And more. When will it ever end? When there is a blank line between lines of text in the source file, that's when. Here it comes.
 
 **About this** There. Now this is a new paragraph. This one is smaller.
@@ -20,7 +19,7 @@ Neat!
 
 ### A Heading 3
 
-Specific content is specified in the urls search string
+Specific content is specified in the URL's search string
 
 * Links using Markdown
   * link to some [content](index.html?page=content.md).
