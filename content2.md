@@ -18,6 +18,10 @@ Neat!
 
 I added this bit from github.com. Via chrome on the laptop.
 
+And then I added this paragraph from an Android phone. This was by logging into GitHub and editing the markdown file directly.
+
+Here is [link:content3] which I created entirely on the phone in GitHub.
+
 This page doesnt exist but I want to add it: [link:content4].
 
 ### A Heading 3
