@@ -19,6 +19,9 @@ Neat!
 I added this bit from github.com. Via chrome on the laptop.
 
 And then I added this paragraph from an Android phone. This was by logging into GitHub and editing the markdown file directly.
+
+Here is [link:contents] which I created entirely on the phone in GitHub.
+
 ### A Heading 3
 
 Specific content is specified in the URL's search string
