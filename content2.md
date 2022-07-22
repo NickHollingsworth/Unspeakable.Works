@@ -18,6 +18,7 @@ Neat!
 
 I added this bit from github.com. Via chrome on the laptop.
 
+This page doesnt exist but I want to add it: [link:content4].
 
 ### A Heading 3
 

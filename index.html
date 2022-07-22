@@ -16,7 +16,20 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Ibarra+Real+Nova:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
-		<style>
+
+		 <script type = "text/javascript">
+         <!--
+				window.onerror = function (msg, url, line) {
+					console.log("Error msg: " + msg );
+					console.log("Error url : " + url );
+					console.log("Error Line number : " + line );
+					document.getElementById("errorDetails").innerHTML = 
+						"It failed with: " + msg + ".<br/>At line: " + line + ". Of: " + url;
+				}
+			 //-->
+		  </script>
+
+			<style>
 			html {
 				background-color: #fff;
 				font-family: 'Ibarra Real Nova', serif;
@@ -91,14 +104,21 @@
 	</head>
 	<body>
 		<p id='header'>Standard site header goes here.</p>
-		<p id='contentDates'>Page <span id='contentFilename'></span> last modified <span id='lastModified'>unknown</span></p>
+		<p id='contentDates'>
+			Page <span id='contentFilename'></span> 
+			last modified <span id='lastModified'>unknown</span></p>
 		<hr/>
 
 		<div id='content'>
 			<p id='noContentYet'>Terribly sorry! I can't load the page you asked for.</p>
-			<p id='pagename'></p>
-			<p id='errorStatus'></p>
-			<p id='errorText'>An unknown error occured.</p>
+			<p id='errorDetails'>
+				<span id='errorStatus'></span>
+				&numsp; &numsp; 
+				<span id='errorText'>An unknown error occured.</span>
+				&numsp; &numsp; 
+				<span id='pagename'></span>
+			</p>
+			<p id='createPage'></p>
 		</div>
 
 		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -153,10 +173,21 @@
 						const lastMod = response.headers.get('Last-Modified');
 						document.getElementById("lastModified").innerHTML = lastMod;
 
+					// If the file cant be loaded put the error details on the page
 					} else {
+
 						document.getElementById("errorStatus").innerHTML = response.status;
 						document.getElementById("errorText").innerHTML = response.statusText;
 						document.title = response.statusText + ": " + pagename;
+
+						if (response.status === 404) {
+							console.log('its a 404');
+						}
+
+						document.getElementById("createPage").innerHTML = 
+							'Do you want to <a href="' +
+							'https://github.com/NickHollingsworth/Unspeakable.Works/new/main' + 
+							'">Create That Page</a>?'
 					}
 				} catch (error) {
 					console.log(error);
