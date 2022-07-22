@@ -3,7 +3,8 @@
 This page was created entirely on a mobile phone.
 
 I:
-9. logged in to GitHub and went to the project
+
+1. logged in to GitHub and went to the project
 9. selected add a file
 9. called it content3.md
 9. wrote some markdown in it
