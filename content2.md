@@ -1,5 +1,6 @@
 # I'm a Lovely Heading One and Title.
 
+[summary:An example of a markup file used by the unspeakable blogi]
 
 ## A Heading 2
 
@@ -22,7 +23,7 @@ And then I added this paragraph from an Android phone. This was by logging into 
 
 Here is [link:content3] which I created entirely on the phone in GitHub.
 
-This page doesnt exist but I want to add it: [link:content4].
+This page didn't exist so the 404 page gave me the option to add it: [link:content4].
 
 ### A Heading 3
 

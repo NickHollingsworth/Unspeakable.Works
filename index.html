@@ -5,6 +5,8 @@
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
+		<!-- description gets filled in once we load the page content -->
+		<meta name="description" content="">
 		<title>This title gets replaced.</title>
 
 		<!--
@@ -131,7 +133,7 @@
 			async function fetchContent() {
 
 				// get the name of the requested content file from the URL query string
-				// if one isnt given in the urlxxi, then load index.md as the default
+				// if one isnt given in the url, then load index.md as the default
 				const urlObject = new URL(document.location.href);
 				const params = urlObject.searchParams;
 				let pagename = params.get("page");
@@ -143,7 +145,8 @@
 				document.getElementById("contentFilename").innerHTML = pagename;
 
 
-				// Set the page title to the file name until the page is loaded
+				// Set page title to the file name until the page is loaded 
+				// (in case the load fails)
 				document.title = pagename;
 
 				// fetch the requested file (which contains markdown raw text) ...
@@ -157,10 +160,15 @@
 						// ...and convert it to text
 						const contentAsRawText = await blob.text();
 
+						// Replace any [summary:description] placeholders in the text with markdown
+						const summaryRegex = /\[summary:([\w*\s*]+)\]/;
+						const summaryReplace = '<p id="summary">$1</p>';
+						let contentAsMarkdown = contentAsRawText.replace(summaryRegex, summaryReplace);
+
 						// Replace any [link:filename] placeholders in the text with markdown
 						const linkRegex = /\[link:(\w+)\]/g;
 						const linkReplace = '[$1](index.html?page=$1.md)';
-						const contentAsMarkdown = contentAsRawText.replaceAll(linkRegex, linkReplace);
+						contentAsMarkdown = contentAsMarkdown.replaceAll(linkRegex, linkReplace);
 
 						// convert markdown to html
 						const contentAsHtml = marked.parse(contentAsMarkdown);
@@ -189,6 +197,9 @@
 							'https://github.com/NickHollingsworth/Unspeakable.Works/new/main' + 
 							'">Create That Page</a>?'
 					}
+
+				// If content load fails with an error (as opposed to doesn't exist) 
+				// put the error on the page
 				} catch (error) {
 					console.log(error);
 					document.getElementById("errorText").innerHTML = error;
@@ -210,6 +221,13 @@
 				if (mainHeader) {
 					document.title = mainHeader.innerHTML;
 				}
+
+				// Set the meta description from the page summary
+				const summary = document.querySelector('#summary');
+				if (summary) {
+					console.log('found summary');
+					document.querySelector('meta[name="description"]').setAttribute("content", summary.innerHTML);
+				}	
 			}
 
 			buildPage();
