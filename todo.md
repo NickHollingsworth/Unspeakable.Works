@@ -7,7 +7,7 @@
 * Can I use subdomains without needing different github projects?
 
 ### Making Pages Trivial To Edit
-* Allow user to edit current page on github
+* Allow user to edit current page on github (currently hard coded to edit index. MD)
 * ~~Allow user to create missing pages on github~~
 
 ### Making Pages Good To Read
