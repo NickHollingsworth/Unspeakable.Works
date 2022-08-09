@@ -34,7 +34,7 @@ And does more out the box.
 * see marked.js example Its probably stealable as it.
 
 ### Making Pages Trivial To Edit
-* ~~Allow user to edit current page on github~~
+* Allow user to edit current page on github (currently hard coded to edit index. MD)
 * ~~Allow user to create missing pages on github~~
 
 ### Follow Good Blogging Standards
