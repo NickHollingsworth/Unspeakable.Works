@@ -1,31 +1,36 @@
 # Things ToDo To Blogi
 
-### Seperating blog engine from content
+### Separating blog engine from content
 * Move to new project called Blogi
+* Point blogi.uk at it
+* start to document it via itself
+* have the JavaScript's etc load from blogi while the content loads from musing.uk
+* remove blogi software and markdown content from musings.
 
 ### Allow Multiple Sub-Sites Easily
-* Can I use subdomains without needing different github projects?
+* Can I use subdomains without needing different GitHub projects?
 
 ### normal navigation ###
 * click on heading to go to (subdomain) home
-* make headings have anchors. click on heading to show anchor which you can click on to go there (which you can then bookmark or share). see [tauri](http://github.com/tauri-apps/awesome-tauri)
+* make headings have anchors. Click on heading to show anchor which you can click on to go there (which you can then bookmark or share). See [tauri](http://github.com/tauri-apps/awesome-tauri)
 
 ### Allow html to be generated in the browser and pushed to git ###
 * Work out how to push a (dummy text) file to git as a new version
-  * **isomorphic-git**? see [this](https://isomorphic-git.org/?utm_source=pocket_mylist) and [this](https://news.ycombinator.com/item?id=22420231&utm_source=pocket_mylist)
-  * git http api?
+  * **isomorphic-git**? See [this](https://isomorphic-git.org/?utm_source=pocket_mylist) and [this](https://news.ycombinator.com/item?id=22420231&utm_source=pocket_mylist)
+  * git http API?
+  * [gitlet](http://gitlet.maryrosecook.com/docs/gitlet.html)
   * github.js [see](https://getpocket.com/read/1074857487) and [this](https://getpocket.com/read/2750385341)
 
   Is it possible to do this so user can pick git provider?
-  * github
-  * gitlab
+  * GitHub
+  * GitLab
   * own git
   * bit bucket?
 
 ### Find a richer markdown syntax converter ###
-One thats easy to extend.
+One that's easy to extend.
 And does more out the box.
-* marked.js ? my first version uses this) - very extendable but seems really hard (though have not tried looking at source and copying it)
+* marked.js ? (my first version uses this) - very extendable but seems really hard (though have not tried looking at source and copying it)
 * kramdown - look like it has better syntax. Is it extendable? - but its ruby so wont run in browser.
 * Gitlab's markdown is rather nice. See [this](https://about.gitlab.com/handbook/markdown-guide/) I think its kramdown.
 * **markdown-it** is js and available via cdn.
@@ -42,7 +47,7 @@ And does more out the box.
 * ~~Show a Last Updated date on page~~
 
 ### Being search engine friendly
-* __Handle the problem of search engines not crawlimg the site because they aren't running the javascript. Is it possible to change the workflow to static site generation by loading and rendering the markdown and then saving that to github as final html from the browser using GitHub.js__
+* __Handle the problem of search engines not crawling the site because they aren't running the javascript. Is it possible to change the workflow to static site generation by loading and rendering the markdown and then saving that to github as final html from the browser using GitHub.js__
 * ~~Add ability to put summary in markdown to populate Meta Description tags for search engines~~
 * Get google to index the pages on demand
 * Set up google analytics https://neilpatel.com/blog/google-index/
